@@ -11,6 +11,7 @@
 #define BASE 0 // default layer
 #define SYMB 1 // symbols
 #define NUMB 2 // numbers/motion
+#define PAD 3  // Pad/motion
 
 // Combos
 enum combos {
@@ -131,14 +132,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     MT(MOD_RSFT, KC_Z),KC_X, KC_C, KC_V, KC_B,    KC_N, KC_M, KC_COMM, KC_DOT, MT(MOD_RSFT, KC_SLSH),
 
    	KC_LALT, MT(MOD_LCTL,KC_DEL),  LT(SYMB,KC_BSPC), // Left
-  	LT(NUMB, KC_SPC), KC_ENT, KC_RCTL  // Right
+  	LT(NUMB, KC_SPC), LT(PAD, KC_ENT), KC_RCTL  // Right
     ),
 
 /* Keymap 1: Symbols/Function Layer
  * ,-----------------------------.       ,----------------------------------.
  * | ALT1 | ALT2| ALT3| ALT4| ALT5|      | ALT6| ALT7 | ALT8 | ALT9| ALT0   |
  * |------+-----+-----+-----+-----|      |----------------------------------|
- * |  `   |  0  |  (  |  {  |  [  |      | ALTH| ALTJ | ALTK |  $ PIPE  '   |
+ * |  `   |  0  |  (  |  {  |  [  |      | ALTH| ALTJ | ALTK | ALTL|    '   |
  * |------+-----+-----+-----+-----|      |----------------------------------|
  * | SHIFT|     |  )  |  }  |  ]  |      |     |      | ALT, |     | SHIFT  |
  * `------+-----+-----+-----+-----'      `----------------------------------'
@@ -154,7 +155,26 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                       KC_TRNS,   KC_TRNS,  KC_TRNS,    KC_TILD,    KC_TRNS,    KC_TRNS
     ),
 
-/* Keymap 2: Pad layer
+/* Keymap 2: Num/Sym Layer
+ * ,-----------------------------.       ,-------------------------------.
+ * |  1   |  2  |  3  |  4  |  5  |      |  6  |  7  |  8  |  9  |   0   |
+ * |------+-----+-----+-----+-----|      |-------------------------------|
+ * |  `   |  0  |  (  |  [  |  {  |      |  }  |  ]  |  )  |  $ PIPE '   |
+ * |------+-----+-----+-----+-----|      |-------------------------------|
+ * | SHIFT|     |     |     |     |      |     |     |     |     | SHIFT |
+ * `------+-----+-----+-----+-----'      `-------------------------------'
+ *              .-----------------.      .-----------------.
+ *              |     |    |  =   |      |     |     |     |
+ *              '-----------------'      '-----------------'
+ */
+[NUMB] = LAYOUT_gergoplex(
+    KC_1,    KC_2,    KC_3,    KC_4,    KC_5, 	   KC_6,  	KC_7, 	 KC_8,    KC_9,    KC_0,
+    KC_GRV,  KC_0,    KC_LPRN, KC_LBRC, KC_LCBR,   KC_RCBR, KC_RBRC, KC_RPRN, KC_DLR,  KC_QUOT,
+    KC_LSFT, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,   KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_RSFT,
+       		          KC_TRNS, KC_TRNS, KC_EQL,    KC_TRNS, KC_TRNS, KC_TRNS
+    ),
+
+/* Keymap 3: Pad layer
  * ,-----------------------------.       ,-------------------------------.
  * |  1   |  2  |  3  |  4  |  5  |      |  6  |  7  |  8  |  9  |   0   |
  * |------+-----+-----+-----+-----|      |-------------------------------|
@@ -163,13 +183,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * | SHIFT|     | PLY |VOLDN| RMB |      |MLFT | MDWN| MUP | MRGT| SHIFT |
  * `------+-----+-----+-----+-----'      `-------------------------------'
  *              .-----------------.      .-----------------.
- *              |     |    |  =   |      |     |     |     |
+ *              |     |    |      |      |     |     |     |
  *              '-----------------'      '-----------------'
  */
-[NUMB] = LAYOUT_gergoplex(
+[PAD] = LAYOUT_gergoplex(
     KC_1,    KC_2,    KC_3,    KC_4,    KC_5, 	   KC_6,  	KC_7, 	 KC_8,    KC_9,    KC_0,
     KC_TRNS, KC_TRNS, KC_MNXT, KC_VOLU, KC_BTN2,   KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, KC_TRNS,
     KC_LSFT, KC_TRNS, KC_MPLY, KC_VOLD, KC_BTN1,   KC_MS_L, KC_MS_D, KC_MS_U, KC_MS_R, KC_RSFT,
-       		          KC_TRNS, KC_TRNS, KC_EQL,    KC_TRNS, KC_TRNS, KC_TRNS
+                      KC_TRNS, KC_TRNS, KC_TRNS,    KC_TRNS, KC_TRNS, KC_TRNS
     )
 };
