@@ -18,6 +18,7 @@ enum combos {
   QW,UI,OP,
   AS,HJ,JK,KL,LSCLN,
   DQ,
+  OT,NZ,
   VV,LR
 };
 
@@ -49,6 +50,9 @@ const uint16_t PROGMEM lscln_combo[] = {KC_L, KC_SCLN, COMBO_END};
 
 const uint16_t PROGMEM dq_combo[] = {KC_LSFT, KC_QUOT, COMBO_END};
 
+const uint16_t PROGMEM ot_combo[] = {KC_1, KC_2, COMBO_END};
+const uint16_t PROGMEM nz_combo[] = {KC_9, KC_0, COMBO_END};
+
 const uint16_t PROGMEM vv_combo[] = {KC_VOLU, KC_VOLD, COMBO_END};
 const uint16_t PROGMEM lr_combo[] = {KC_BTN1, KC_BTN2, COMBO_END};
 
@@ -68,8 +72,12 @@ combo_t key_combos[COMBO_COUNT] = {
   [KL] = COMBO(kl_combo, KC_GT),
   [LSCLN] = COMBO(lscln_combo, KC_QUOT),
 
-  // Symbols
+  // CMOD
   [DQ] = COMBO(dq_combo, KC_PIPE),
+
+  // NUM
+  [OT] = COMBO(ot_combo, KC_TILD),
+  [NZ] = COMBO(nz_combo, KC_EQL),
 
   // Pad
   [VV] = COMBO(vv_combo, KC_MUTE),
