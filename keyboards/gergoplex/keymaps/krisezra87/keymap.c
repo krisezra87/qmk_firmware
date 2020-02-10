@@ -14,7 +14,7 @@
 
 // Combos
 enum combos {
-  QW,IO,OP,
+  QW,UI,OP,
   AS,HJ,JK,KL,LSCLN,
   FV,GB,
   DQ,
@@ -39,7 +39,7 @@ enum combos {
  *  '-------------------------'           '-----------------'
  */
 const uint16_t PROGMEM qw_combo[] = {KC_Q, KC_W, COMBO_END};
-const uint16_t PROGMEM io_combo[] = {KC_I, KC_O, COMBO_END};
+const uint16_t PROGMEM ui_combo[] = {KC_U, KC_I, COMBO_END};
 const uint16_t PROGMEM op_combo[] = {KC_O, KC_P, COMBO_END};
 
 const uint16_t PROGMEM as_combo[] = {KC_A, KC_S, COMBO_END};
@@ -65,7 +65,7 @@ const uint16_t PROGMEM lr_combo[] = {KC_BTN1, KC_BTN2, COMBO_END};
 combo_t key_combos[COMBO_COUNT] = {
   // Horizontal Chords
   [QW] = COMBO(qw_combo, KC_TAB),
-  [IO] = COMBO(io_combo, KC_MINS),
+  [UI] = COMBO(ui_combo, KC_MINS),
   [OP] = COMBO(op_combo, KC_BSLS),
 
   [AS] = COMBO(as_combo, KC_ESC),
