@@ -17,9 +17,9 @@ enum combos {
   QW,UI,OP,
   AS,HJ,JK,KL,LSCLN,
   FV,GB,
-  DQ,
+  SPR,SB,SC,DQ,
   VV,LR,
-  BS,SBS
+  AQ,SAQ
 };
 
 // NOTE: If you're using MT,LT or anything you must
@@ -51,13 +51,14 @@ const uint16_t PROGMEM lscln_combo[] = {KC_L, KC_SCLN, COMBO_END};
 const uint16_t PROGMEM fv_combo[] = {KC_F, KC_V, COMBO_END};
 const uint16_t PROGMEM gb_combo[] = {KC_G, KC_B, COMBO_END};
 
-const uint16_t PROGMEM dq_combo[] = {KC_DLR, KC_QUOT, COMBO_END};
+const uint16_t PROGMEM sp_combo[] = {KC_LSFT, KC_LPRN, COMBO_END};
+const uint16_t PROGMEM sb_combo[] = {KC_LSFT, KC_LBRC, COMBO_END};
+const uint16_t PROGMEM sc_combo[] = {KC_LSFT, KC_LCBR, COMBO_END};
+const uint16_t PROGMEM dq_combo[] = {KC_LSFT, KC_QUOT, COMBO_END};
 
 const uint16_t PROGMEM vv_combo[] = {KC_VOLU, KC_VOLD, COMBO_END};
 const uint16_t PROGMEM lr_combo[] = {KC_BTN1, KC_BTN2, COMBO_END};
 
-const uint16_t PROGMEM bs_combo[] = {KC_BSPC, KC_SPC, COMBO_END};
-const uint16_t PROGMEM sbs_combo[] = {KC_LSFT, KC_BSPC, KC_SPC, COMBO_END};
 const uint16_t PROGMEM aq_combo[] = {KC_A, KC_SCLN, COMBO_END};
 const uint16_t PROGMEM saq_combo[] = {KC_GRV, KC_QUOT, COMBO_END};
 
@@ -72,6 +73,11 @@ enum custom_keycodes {
     ALT_EIGHT,
     ALT_NINE,
     ALT_ZERO,
+    ALT_COMM,
+    ALT_J,
+    ALT_K,
+    ALT_H,
+    ALT_L,
 };
 
 combo_t key_combos[COMBO_COUNT] = {
@@ -91,6 +97,9 @@ combo_t key_combos[COMBO_COUNT] = {
   [FV] = COMBO(fv_combo, KC_BTN2),
 
   // Symbols
+  [SPR] = COMBO(sp_combo, KC_RPRN),
+  [SB] = COMBO(sb_combo, KC_RBRC),
+  [SC] = COMBO(sc_combo, KC_RCBR),
   [DQ] = COMBO(dq_combo, KC_PIPE),
 
   // Pad
@@ -98,8 +107,8 @@ combo_t key_combos[COMBO_COUNT] = {
   [LR] = COMBO(lr_combo, KC_BTN3),
 
   // DWM
-  [BS] = COMBO(aq_combo, LALT(LSFT(KC_ENT))),
-  [SBS] = COMBO(saq_combo, LALT(LSFT(KC_Q))),
+  [AQ] = COMBO(aq_combo, LALT(LSFT(KC_ENT))),
+  [SAQ] = COMBO(saq_combo, LALT(LSFT(KC_Q))),
 };
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
@@ -163,6 +172,36 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 SEND_STRING(SS_LALT("0"));
             }
             break;
+
+        case ALT_COMM:
+            if (record->event.pressed) {
+                SEND_STRING(SS_LALT(","));
+            }
+            break;
+
+        case ALT_J:
+            if (record->event.pressed) {
+                SEND_STRING(SS_LALT("j"));
+            }
+            break;
+
+        case ALT_K:
+            if (record->event.pressed) {
+                SEND_STRING(SS_LALT("k"));
+            }
+            break;
+
+        case ALT_H:
+            if (record->event.pressed) {
+                SEND_STRING(SS_LALT("h"));
+            }
+            break;
+
+        case ALT_L:
+            if (record->event.pressed) {
+                SEND_STRING(SS_LALT("l"));
+            }
+            break;
     }
     return true;
 };
@@ -196,9 +235,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * ,-----------------------------.       ,----------------------------------.
  * | ALT1 | ALT2| ALT3| ALT4| ALT5|      | ALT6| ALT7 | ALT8 | ALT9| ALT0   |
  * |------+-----+-----+-----+-----|      |----------------------------------|
- * |  `   |  0  |  (  |  {  |  [  |      |  ]  |  }   |  )   |  $ PIPE  '   |
+ * |  `   |  0  |  (  |  {  |  [  |      |     | ALTJ | ALTK |  $ PIPE  '   |
  * |------+-----+-----+-----+-----|      |----------------------------------|
- * | SHIFT| F1 F2 F3 F4 F5 F6 F7  |      | F8 F9 F10 F11 F12 |     | SHIFT  |
+ * | SHIFT|     |  )  |  }  |  ]  |      |     |      | ALT, |     | SHIFT  |
  * `------+-----+-----+-----+-----'      `----------------------------------'
  *              .-----------------.      .-------------------.
  *              |     |     |     |      |  ~  |      |      |
@@ -207,9 +246,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 [SYMB] = LAYOUT_gergoplex(
     ALT_ONE, ALT_TWO, ALT_THREE, ALT_FOUR, ALT_FIVE,   ALT_SIX, ALT_SEVEN, ALT_EIGHT, ALT_NINE, ALT_ZERO,
-    KC_GRV,  KC_0,    KC_LPRN,   KC_LCBR,  KC_LBRC,    KC_RBRC, KC_RCBR,   KC_RPRN,   KC_DLR,   KC_QUOT,
-    KC_LSFT, KC_F1,   KC_F3,     KC_F5,    KC_F7,      KC_F8,   KC_F10,    KC_F12,    KC_TRNS,  KC_RSFT,
-                      KC_TRNS,   KC_TRNS,  KC_TRNS,    KC_TILD, KC_TRNS,   KC_TRNS
+    KC_GRV,  KC_0,    KC_LPRN,   KC_LBRC,  KC_LCBR,    KC_TRNS, ALT_J,    ALT_K,     KC_DLR,   KC_QUOT,
+    KC_LSFT, KC_TRNS, KC_RCBR,   KC_RBRC,  KC_RPRN,    KC_TRNS, KC_TRNS,  ALT_COMM,  KC_TRNS,  KC_RSFT,
+                      KC_TRNS,   KC_TRNS,  KC_TRNS,    KC_TILD, KC_TRNS,  KC_TRNS
     ),
 
 /* Keymap 2: Pad layer
@@ -228,6 +267,6 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_1,    KC_2,    KC_3,    KC_4,    KC_5, 	   KC_6,  	KC_7, 	 KC_8,    KC_9,    KC_0,
     KC_TRNS, KC_TRNS, KC_MNXT, KC_VOLU, KC_BTN2,   KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, KC_TRNS,
     KC_LSFT, KC_TRNS, KC_MPLY, KC_VOLD, KC_BTN1,   KC_MS_L, KC_MS_D, KC_MS_U, KC_MS_R, KC_RSFT,
-       		          KC_TRNS, KC_TRNS, KC_EQL,   KC_TRNS,KC_TRNS,KC_TRNS
+       		          KC_TRNS, KC_TRNS, KC_EQL,    KC_TRNS, KC_TRNS, KC_TRNS
     )
 };
