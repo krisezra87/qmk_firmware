@@ -18,8 +18,8 @@ enum combos {
   AS,HJ,JK,KL,LSCLN,
   FV,GB,
   DQ,
-  FT,FF,FS,FN,FE,
-  VV,LR
+  VV,LR,
+  BS,SBS
 };
 
 // NOTE: If you're using MT,LT or anything you must
@@ -53,14 +53,26 @@ const uint16_t PROGMEM gb_combo[] = {KC_G, KC_B, COMBO_END};
 
 const uint16_t PROGMEM dq_combo[] = {KC_DLR, KC_QUOT, COMBO_END};
 
-const uint16_t PROGMEM ft_combo[] = {KC_F1, KC_F3, COMBO_END};
-const uint16_t PROGMEM ff_combo[] = {KC_F3, KC_F5, COMBO_END};
-const uint16_t PROGMEM fs_combo[] = {KC_F5, KC_F7, COMBO_END};
-const uint16_t PROGMEM fn_combo[] = {KC_F8, KC_F10, COMBO_END};
-const uint16_t PROGMEM fe_combo[] = {KC_F10, KC_F12, COMBO_END};
-
 const uint16_t PROGMEM vv_combo[] = {KC_VOLU, KC_VOLD, COMBO_END};
 const uint16_t PROGMEM lr_combo[] = {KC_BTN1, KC_BTN2, COMBO_END};
+
+const uint16_t PROGMEM bs_combo[] = {KC_BSPC, KC_SPC, COMBO_END};
+const uint16_t PROGMEM sbs_combo[] = {KC_LSFT, KC_BSPC, KC_SPC, COMBO_END};
+const uint16_t PROGMEM aq_combo[] = {KC_A, KC_SCLN, COMBO_END};
+const uint16_t PROGMEM saq_combo[] = {KC_GRV, KC_QUOT, COMBO_END};
+
+enum custom_keycodes {
+    ALT_ONE=SAFE_RANGE,
+    ALT_TWO,
+    ALT_THREE,
+    ALT_FOUR,
+    ALT_FIVE,
+    ALT_SIX,
+    ALT_SEVEN,
+    ALT_EIGHT,
+    ALT_NINE,
+    ALT_ZERO,
+};
 
 combo_t key_combos[COMBO_COUNT] = {
   // Horizontal Chords
@@ -80,28 +92,14 @@ combo_t key_combos[COMBO_COUNT] = {
 
   // Symbols
   [DQ] = COMBO(dq_combo, KC_PIPE),
-  [FT] = COMBO(ft_combo, KC_F2),
-  [FF] = COMBO(ff_combo, KC_F4),
-  [FS] = COMBO(fs_combo, KC_F6),
-  [FN] = COMBO(fn_combo, KC_F9),
-  [FE] = COMBO(fe_combo, KC_F11),
 
   // Pad
   [VV] = COMBO(vv_combo, KC_MUTE),
   [LR] = COMBO(lr_combo, KC_BTN3),
-};
 
-enum custom_keycodes {
-    ALT_ONE=SAFE_RANGE,
-    ALT_TWO,
-    ALT_THREE,
-    ALT_FOUR,
-    ALT_FIVE,
-    ALT_SIX,
-    ALT_SEVEN,
-    ALT_EIGHT,
-    ALT_NINE,
-    ALT_ZERO
+  // DWM
+  [BS] = COMBO(aq_combo, LALT(LSFT(KC_ENT))),
+  [SBS] = COMBO(saq_combo, LALT(LSFT(KC_Q))),
 };
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
