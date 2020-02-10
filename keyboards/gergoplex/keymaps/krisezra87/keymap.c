@@ -9,18 +9,16 @@
 #include QMK_KEYBOARD_H
 
 #define BASE 0 // default layer
-#define SYMB 1 // symbols
-#define NUMB 2 // numbers/motion
+#define CMOD 1 // custom mods
+#define NUMB 2 // numbers and symbols
 #define PAD 3  // Pad/motion
 
 // Combos
 enum combos {
   QW,UI,OP,
   AS,HJ,JK,KL,LSCLN,
-  FV,GB,
-  SPR,SB,SC,DQ,
-  VV,LR,
-  AQ,SAQ
+  DQ,
+  VV,LR
 };
 
 // NOTE: If you're using MT,LT or anything you must
@@ -49,19 +47,10 @@ const uint16_t PROGMEM jk_combo[] = {KC_J, KC_K, COMBO_END};
 const uint16_t PROGMEM kl_combo[] = {KC_K, KC_L, COMBO_END};
 const uint16_t PROGMEM lscln_combo[] = {KC_L, KC_SCLN, COMBO_END};
 
-const uint16_t PROGMEM fv_combo[] = {KC_F, KC_V, COMBO_END};
-const uint16_t PROGMEM gb_combo[] = {KC_G, KC_B, COMBO_END};
-
-const uint16_t PROGMEM sp_combo[] = {KC_LSFT, KC_LPRN, COMBO_END};
-const uint16_t PROGMEM sb_combo[] = {KC_LSFT, KC_LBRC, COMBO_END};
-const uint16_t PROGMEM sc_combo[] = {KC_LSFT, KC_LCBR, COMBO_END};
 const uint16_t PROGMEM dq_combo[] = {KC_LSFT, KC_QUOT, COMBO_END};
 
 const uint16_t PROGMEM vv_combo[] = {KC_VOLU, KC_VOLD, COMBO_END};
 const uint16_t PROGMEM lr_combo[] = {KC_BTN1, KC_BTN2, COMBO_END};
-
-const uint16_t PROGMEM aq_combo[] = {KC_A, KC_SCLN, COMBO_END};
-const uint16_t PROGMEM saq_combo[] = {KC_GRV, KC_QUOT, COMBO_END};
 
 /* enum custom_keycodes { */
     /* ALT_ONE=SAFE_RANGE, */
@@ -79,23 +68,12 @@ combo_t key_combos[COMBO_COUNT] = {
   [KL] = COMBO(kl_combo, KC_GT),
   [LSCLN] = COMBO(lscln_combo, KC_QUOT),
 
-  // Vertical
-  [GB] = COMBO(gb_combo, KC_BTN1),
-  [FV] = COMBO(fv_combo, KC_BTN2),
-
   // Symbols
-  [SPR] = COMBO(sp_combo, KC_RPRN),
-  [SB] = COMBO(sb_combo, KC_RBRC),
-  [SC] = COMBO(sc_combo, KC_RCBR),
   [DQ] = COMBO(dq_combo, KC_PIPE),
 
   // Pad
   [VV] = COMBO(vv_combo, KC_MUTE),
   [LR] = COMBO(lr_combo, KC_BTN3),
-
-  // DWM
-  [AQ] = COMBO(aq_combo, LALT(LSFT(KC_ENT))),
-  [SAQ] = COMBO(saq_combo, LALT(LSFT(KC_Q))),
 };
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
@@ -122,37 +100,37 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |------+-----+-----+-----+-----|      |--------------------------------|
  * |SHFT/Z|  X  |  C  |  V  |  B  |      |  N  |  M  |  <  |  >  | SHFT/? |
  * `------+-----+-----+-----+-----'      `--------------------------------'
- *       .------------------------.      .------------------.
- *       | LALT|DEL/LCTL|BSPC(SYM)|      | SPC(NUM)|ENT|RCTL|
- *       '------------------------'      '------------------'
+ *       .------------------------.      .-----------------------.
+ *       | LALT|DEL/LCTL|BSPC(SYM)|      | SPC(NUM)|ENT(PAD)|RCTL|
+ *       '------------------------'      '-----------------------'
  */
 [BASE] = LAYOUT_gergoplex(
     KC_Q, KC_W, KC_E, KC_R, KC_T,  	              KC_Y, KC_U, KC_I,    KC_O,   KC_P,
     KC_A, KC_S, KC_D, KC_F, KC_G,                 KC_H, KC_J, KC_K,    KC_L,   KC_SCLN,
     MT(MOD_RSFT, KC_Z),KC_X, KC_C, KC_V, KC_B,    KC_N, KC_M, KC_COMM, KC_DOT, MT(MOD_RSFT, KC_SLSH),
 
-   	KC_LALT, MT(MOD_LCTL,KC_DEL),  LT(SYMB,KC_BSPC), // Left
+   	KC_LALT, MT(MOD_LCTL,KC_DEL),  LT(CMOD,KC_BSPC), // Left
   	LT(NUMB, KC_SPC), LT(PAD, KC_ENT), KC_RCTL  // Right
     ),
 
-/* Keymap 1: Symbols/Function Layer
+/* Keymap 1: MOD Layer
  * ,-----------------------------.       ,----------------------------------.
  * | ALT1 | ALT2| ALT3| ALT4| ALT5|      | ALT6| ALT7 | ALT8 | ALT9| ALT0   |
  * |------+-----+-----+-----+-----|      |----------------------------------|
- * |  `   |  0  |  (  |  {  |  [  |      | ALTH| ALTJ | ALTK | ALTL|    '   |
+ * |  `   |     | CTLD|     |     |      | ALTH| ALTJ | ALTK | ALTL|    '   |
  * |------+-----+-----+-----+-----|      |----------------------------------|
- * | SHIFT|     |  )  |  }  |  ]  |      |     |      | ALT, |     | SHIFT  |
+ * | SHIFT|     | CTLC| CTLV|     |      |     |      | ALT, |     | SHIFT  |
  * `------+-----+-----+-----+-----'      `----------------------------------'
  *              .-----------------.      .-------------------.
  *              |     |     |     |      |  ~  |      |      |
  *              '-----------------'      '-------------------'
  */
 
-[SYMB] = LAYOUT_gergoplex(
+[CMOD] = LAYOUT_gergoplex(
     LALT(KC_1), LALT(KC_2), LALT(KC_3), LALT(KC_4), LALT(KC_5),LALT(KC_6), LALT(KC_7), LALT(KC_8), LALT(KC_9), LALT(KC_0),
-    KC_GRV,  KC_0,    KC_LPRN,   KC_LBRC,  KC_LCBR,    LALT(KC_H), LALT(KC_J), LALT(KC_K),    LALT(KC_L), KC_QUOT,
-    KC_LSFT, KC_TRNS, KC_RCBR,   KC_RBRC,  KC_RPRN,    KC_TRNS,    KC_TRNS,    LALT(KC_COMM), KC_TRNS,    KC_RSFT,
-                      KC_TRNS,   KC_TRNS,  KC_TRNS,    KC_TILD,    KC_TRNS,    KC_TRNS
+    KC_GRV,  KC_TRNS, LCTL(KC_D), KC_TRNS,    KC_TRNS,    LALT(KC_H), LALT(KC_J), LALT(KC_K),    LALT(KC_L), KC_QUOT,
+    KC_LSFT, KC_TRNS, LCTL(KC_C), LCTL(KC_V), KC_TRNS,    KC_TRNS,    KC_TRNS,    LALT(KC_COMM), KC_TRNS,    KC_RSFT,
+                      KC_TRNS,    KC_TRNS,    KC_TRNS,    LALT(LSFT(KC_ENT)), LALT(LSFT(KC_Q)),    KC_TRNS
     ),
 
 /* Keymap 2: Num/Sym Layer
