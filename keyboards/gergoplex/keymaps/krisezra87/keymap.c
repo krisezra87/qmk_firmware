@@ -172,8 +172,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 // Blank template at the bottom
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
-[0] = {{ALT_ONE, ALT_TWO}},
-
 /* Keymap 0: Basic layer
  *
  * ,------------------------------.      ,--------------------------------.
