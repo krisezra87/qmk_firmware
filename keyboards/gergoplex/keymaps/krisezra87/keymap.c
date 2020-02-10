@@ -62,23 +62,9 @@ const uint16_t PROGMEM lr_combo[] = {KC_BTN1, KC_BTN2, COMBO_END};
 const uint16_t PROGMEM aq_combo[] = {KC_A, KC_SCLN, COMBO_END};
 const uint16_t PROGMEM saq_combo[] = {KC_GRV, KC_QUOT, COMBO_END};
 
-enum custom_keycodes {
-    ALT_ONE=SAFE_RANGE,
-    ALT_TWO,
-    ALT_THREE,
-    ALT_FOUR,
-    ALT_FIVE,
-    ALT_SIX,
-    ALT_SEVEN,
-    ALT_EIGHT,
-    ALT_NINE,
-    ALT_ZERO,
-    ALT_COMM,
-    ALT_J,
-    ALT_K,
-    ALT_H,
-    ALT_L,
-};
+/* enum custom_keycodes { */
+    /* ALT_ONE=SAFE_RANGE, */
+/* }; */
 
 combo_t key_combos[COMBO_COUNT] = {
   // Horizontal Chords
@@ -113,95 +99,12 @@ combo_t key_combos[COMBO_COUNT] = {
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
-        case ALT_ONE:
-            if (record->event.pressed) {
-                SEND_STRING(SS_LALT("1"));
-            }
-            break;
+        /* case ALT_ONE: */
+        /*     if (record->event.pressed) { */
+        /*         SEND_STRING(SS_LALT("1")); */
+        /*     } */
+        /*     break; */
 
-        case ALT_TWO:
-            if (record->event.pressed) {
-                SEND_STRING(SS_LALT("2"));
-            }
-            break;
-
-        case ALT_THREE:
-            if (record->event.pressed) {
-                SEND_STRING(SS_LALT("3"));
-            }
-            break;
-
-        case ALT_FOUR:
-            if (record->event.pressed) {
-                SEND_STRING(SS_LALT("4"));
-            }
-            break;
-
-        case ALT_FIVE:
-            if (record->event.pressed) {
-                SEND_STRING(SS_LALT("5"));
-            }
-            break;
-
-        case ALT_SIX:
-            if (record->event.pressed) {
-                SEND_STRING(SS_LALT("6"));
-            }
-            break;
-
-        case ALT_SEVEN:
-            if (record->event.pressed) {
-                SEND_STRING(SS_LALT("7"));
-            }
-            break;
-
-        case ALT_EIGHT:
-            if (record->event.pressed) {
-                SEND_STRING(SS_LALT("8"));
-            }
-            break;
-
-        case ALT_NINE:
-            if (record->event.pressed) {
-                SEND_STRING(SS_LALT("9"));
-            }
-            break;
-
-        case ALT_ZERO:
-            if (record->event.pressed) {
-                SEND_STRING(SS_LALT("0"));
-            }
-            break;
-
-        case ALT_COMM:
-            if (record->event.pressed) {
-                SEND_STRING(SS_LALT(","));
-            }
-            break;
-
-        case ALT_J:
-            if (record->event.pressed) {
-                SEND_STRING(SS_LALT("j"));
-            }
-            break;
-
-        case ALT_K:
-            if (record->event.pressed) {
-                SEND_STRING(SS_LALT("k"));
-            }
-            break;
-
-        case ALT_H:
-            if (record->event.pressed) {
-                SEND_STRING(SS_LALT("h"));
-            }
-            break;
-
-        case ALT_L:
-            if (record->event.pressed) {
-                SEND_STRING(SS_LALT("l"));
-            }
-            break;
     }
     return true;
 };
@@ -235,7 +138,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * ,-----------------------------.       ,----------------------------------.
  * | ALT1 | ALT2| ALT3| ALT4| ALT5|      | ALT6| ALT7 | ALT8 | ALT9| ALT0   |
  * |------+-----+-----+-----+-----|      |----------------------------------|
- * |  `   |  0  |  (  |  {  |  [  |      |     | ALTJ | ALTK |  $ PIPE  '   |
+ * |  `   |  0  |  (  |  {  |  [  |      | ALTH| ALTJ | ALTK |  $ PIPE  '   |
  * |------+-----+-----+-----+-----|      |----------------------------------|
  * | SHIFT|     |  )  |  }  |  ]  |      |     |      | ALT, |     | SHIFT  |
  * `------+-----+-----+-----+-----'      `----------------------------------'
@@ -245,10 +148,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
 
 [SYMB] = LAYOUT_gergoplex(
-    ALT_ONE, ALT_TWO, ALT_THREE, ALT_FOUR, ALT_FIVE,   ALT_SIX, ALT_SEVEN, ALT_EIGHT, ALT_NINE, ALT_ZERO,
-    KC_GRV,  KC_0,    KC_LPRN,   KC_LBRC,  KC_LCBR,    KC_TRNS, ALT_J,    ALT_K,     KC_DLR,   KC_QUOT,
-    KC_LSFT, KC_TRNS, KC_RCBR,   KC_RBRC,  KC_RPRN,    KC_TRNS, KC_TRNS,  ALT_COMM,  KC_TRNS,  KC_RSFT,
-                      KC_TRNS,   KC_TRNS,  KC_TRNS,    KC_TILD, KC_TRNS,  KC_TRNS
+    LALT(KC_1), LALT(KC_2), LALT(KC_3), LALT(KC_4), LALT(KC_5),LALT(KC_6), LALT(KC_7), LALT(KC_8), LALT(KC_9), LALT(KC_0),
+    KC_GRV,  KC_0,    KC_LPRN,   KC_LBRC,  KC_LCBR,    LALT(KC_H), LALT(KC_J), LALT(KC_K),    LALT(KC_L), KC_QUOT,
+    KC_LSFT, KC_TRNS, KC_RCBR,   KC_RBRC,  KC_RPRN,    KC_TRNS,    KC_TRNS,    LALT(KC_COMM), KC_TRNS,    KC_RSFT,
+                      KC_TRNS,   KC_TRNS,  KC_TRNS,    KC_TILD,    KC_TRNS,    KC_TRNS
     ),
 
 /* Keymap 2: Pad layer
