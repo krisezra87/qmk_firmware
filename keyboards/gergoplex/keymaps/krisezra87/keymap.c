@@ -16,7 +16,7 @@
 // Combos
 enum combos {
   QW,UI,OP,
-  AS,HJ,JK,KL,LSCLN,
+  AS,JK,KL,LSCLN,
   DQ,
   OT,NZ,
   VV,LR
@@ -30,7 +30,7 @@ enum combos {
  * ,------------------------------.      ,--------------------------------.
  * |    TAB    |     |     |      |      |     |     |    MINS  BSLH      |
  * |-----+-----+-----+-----+------|      |--------------------------------|
- * |    ESC    |     |     |      |      |    LES   ESC   GRT    |        |
+ * |    ESC    |     |     |      |      |     |    LESS  GRT    |        |
  * |-----+-----+-----+-RMB-+-LMB--|      |--------------------------------|
  * |     |     |     |     |      |      |     |     |     |     |        |
  * `-----+-----+-----+-----+------'      `--------------------------------'
@@ -43,12 +43,11 @@ const uint16_t PROGMEM ui_combo[] = {KC_U, KC_I, COMBO_END};
 const uint16_t PROGMEM op_combo[] = {KC_O, KC_P, COMBO_END};
 
 const uint16_t PROGMEM as_combo[] = {KC_A, KC_S, COMBO_END};
-const uint16_t PROGMEM hj_combo[] = {KC_H, KC_J, COMBO_END};
 const uint16_t PROGMEM jk_combo[] = {KC_J, KC_K, COMBO_END};
 const uint16_t PROGMEM kl_combo[] = {KC_K, KC_L, COMBO_END};
 const uint16_t PROGMEM lscln_combo[] = {KC_L, KC_SCLN, COMBO_END};
 
-const uint16_t PROGMEM dq_combo[] = {KC_LSFT, KC_QUOT, COMBO_END};
+const uint16_t PROGMEM dq_combo[] = {KC_DLR, KC_QUOT, COMBO_END};
 
 const uint16_t PROGMEM ot_combo[] = {KC_1, KC_2, COMBO_END};
 const uint16_t PROGMEM nz_combo[] = {KC_9, KC_0, COMBO_END};
@@ -67,8 +66,7 @@ combo_t key_combos[COMBO_COUNT] = {
   [OP] = COMBO(op_combo, KC_BSLS),
 
   [AS] = COMBO(as_combo, KC_ESC),
-  [HJ] = COMBO(hj_combo, KC_LT),
-  [JK] = COMBO(jk_combo, KC_ESC),
+  [JK] = COMBO(jk_combo, KC_LT),
   [KL] = COMBO(kl_combo, KC_GT),
   [LSCLN] = COMBO(lscln_combo, KC_QUOT),
 
