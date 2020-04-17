@@ -16,8 +16,8 @@
 // Combos
 enum combos {
   QW,UI,OP,
-  AS,JK,KL,LSCLN,
-  OT,NZ,BA,SLP,LPRP,
+  AS,LSCLN,
+  OT,EN,NZ,BA,SLP,LPRP,
   VV,LR
 };
 
@@ -29,11 +29,10 @@ const uint16_t PROGMEM ui_combo[] = {KC_U, KC_I, COMBO_END};
 const uint16_t PROGMEM op_combo[] = {KC_O, KC_P, COMBO_END};
 
 const uint16_t PROGMEM as_combo[] = {KC_A, KC_S, COMBO_END};
-const uint16_t PROGMEM jk_combo[] = {KC_J, KC_K, COMBO_END};
-const uint16_t PROGMEM kl_combo[] = {KC_K, KC_L, COMBO_END};
 const uint16_t PROGMEM lscln_combo[] = {KC_L, KC_SCLN, COMBO_END};
 
 const uint16_t PROGMEM ot_combo[] = {KC_1, KC_2, COMBO_END};
+const uint16_t PROGMEM en_combo[] = {KC_8, KC_9, COMBO_END};
 const uint16_t PROGMEM nz_combo[] = {KC_9, KC_0, COMBO_END};
 const uint16_t PROGMEM ba_combo[] = {KC_EXLM, KC_AT, COMBO_END};
 const uint16_t PROGMEM slp_combo[] = {KC_ASTR, KC_LPRN, COMBO_END};
@@ -53,8 +52,6 @@ combo_t key_combos[COMBO_COUNT] = {
   [OP] = COMBO(op_combo, KC_BSLS),
 
   [AS] = COMBO(as_combo, KC_ESC),
-  [JK] = COMBO(jk_combo, KC_LT),
-  [KL] = COMBO(kl_combo, KC_GT),
   [LSCLN] = COMBO(lscln_combo, KC_QUOT),
 
   // CMOD
@@ -62,9 +59,10 @@ combo_t key_combos[COMBO_COUNT] = {
   // NUM
   [OT] = COMBO(ot_combo, KC_GRV),
   [BA] = COMBO(ba_combo, KC_TILD),
+  [EN] = COMBO(en_combo, KC_MINS),
   [NZ] = COMBO(nz_combo, KC_EQL),
-  [SLP] = COMBO(slp_combo, KC_MINS),
-  [LPRP] = COMBO(lprp_combo, KC_EQL),
+  [SLP] = COMBO(slp_combo, KC_UNDS),
+  [LPRP] = COMBO(lprp_combo, KC_PLUS),
 
   // Pad
   [VV] = COMBO(vv_combo, KC_MUTE),
@@ -90,7 +88,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * ,------------------------------.      ,-----------------------------------.
  * |   Q TAB W  |  E  |  R  |  T  |      |  Y  |  U  |  I  -  O BSLSH P      |
  * |------+-----+-----+-----+-----|      |-----------------------------------|
- * |   A ESC S  |  D  |  F  |  G  |      |  H  |  J  <  K  >  L  | CTRL/;    |
+ * |   A ESC S  |  D  |  F  |  G  |      |  H  |  J  |  K  |  L  | CTRL/;    |
  * |------+-----+-----+-----+-----|      |-----------------------------------|
  * |SHFT/Z|  X  |  C  |  V  |  B  |      |  N  |  M  |  ,  |  .  | SHFT/SLSH |
  * `------+-----+-----+-----+-----'      `-----------------------------------'
@@ -129,21 +127,21 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 /* Keymap 2: Num/Sym Layer
  * ,-----------------------------.       ,-------------------------------.
- * |  1   `  2  |  3  |  4  |  5  |      |  6  |  7  |  8  |  9  =   0   |
+ * |  1   `  2  |  3  |  4  |  5  |      |  6  |  7  |  8  -  9  =   0   |
  * |------+-----+-----+-----+-----|      |-------------------------------|
- * |  !   ~  @  |  #  |  $  |  %  |      |  ^  |  &  |  *  -  (  =   )   |
+ * |  !   ~  @  |  #  |  $  |  %  |      |  ^  |  &  |  *  _  (  +   )   |
  * |------+-----+-----+-----+-----|      |-------------------------------|
  * | SHIFT|  {  |  [  |  (  |     |      |CTL6 |  )  |  ]  |  }  | SHIFT |
  * `------+-----+-----+-----+-----'      `-------------------------------'
  *              .-----------------.      .-----------------.
- *              |     |    |  =   |      |     |     |     |
+ *              |     |    |      |      |     |     |     |
  *              '-----------------'      '-----------------'
  */
 [NUMB] = LAYOUT_gergoplex(
     KC_1,    KC_2,    KC_3,    KC_4,    KC_5, 	   KC_6,  	   KC_7, 	 KC_8,    KC_9,    KC_0,
     KC_EXLM, KC_AT,   KC_HASH, KC_DLR,  KC_PERC,   KC_CIRC,    KC_AMPR, KC_ASTR, KC_LPRN,  KC_RPRN,
     KC_LSFT, KC_LCBR, KC_LBRC, KC_LPRN, KC_TRNS,   LCTL(KC_6), KC_RPRN, KC_RBRC, KC_RCBR,  KC_RSFT,
-                      KC_TRNS, KC_TRNS, KC_EQL,    KC_TRNS,    KC_TRNS, KC_TRNS
+                      KC_TRNS, KC_TRNS, KC_TRNS,    KC_TRNS,    KC_TRNS, KC_TRNS
     ),
 
 /* Keymap 3: Pad layer
