@@ -17,7 +17,6 @@
 enum combos {
   QW,UI,OP,
   AS,JK,KL,LSCLN,
-  DQ,
   OT,NZ,
   VV,LR
 };
@@ -47,8 +46,6 @@ const uint16_t PROGMEM jk_combo[] = {KC_J, KC_K, COMBO_END};
 const uint16_t PROGMEM kl_combo[] = {KC_K, KC_L, COMBO_END};
 const uint16_t PROGMEM lscln_combo[] = {KC_L, KC_SCLN, COMBO_END};
 
-const uint16_t PROGMEM dq_combo[] = {KC_DLR, KC_QUOT, COMBO_END};
-
 const uint16_t PROGMEM ot_combo[] = {KC_1, KC_2, COMBO_END};
 const uint16_t PROGMEM nz_combo[] = {KC_9, KC_0, COMBO_END};
 
@@ -71,7 +68,6 @@ combo_t key_combos[COMBO_COUNT] = {
   [LSCLN] = COMBO(lscln_combo, KC_QUOT),
 
   // CMOD
-  [DQ] = COMBO(dq_combo, KC_PIPE),
 
   // NUM
   [OT] = COMBO(ot_combo, KC_TILD),
@@ -99,13 +95,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 /* Keymap 0: Basic layer
  *
- * ,------------------------------.      ,--------------------------------.
- * |   Q  |  W  |  E  |  R  |  T  |      |  Y  |  U  |  I  |  O  |    P   |
- * |------+-----+-----+-----+-----|      |--------------------------------|
- * |    A |  S  |  D  |  F  |  G  |      |  H  |  J  |  K  |  L  | CTRL/; |
- * |------+-----+-----+-----+-----|      |--------------------------------|
- * |SHFT/Z|  X  |  C  |  V  |  B  |      |  N  |  M  |  <  |  >  | SHFT/? |
- * `------+-----+-----+-----+-----'      `--------------------------------'
+ * ,------------------------------.      ,-----------------------------------.
+ * |   Q  |  W  |  E  |  R  |  T  |      |  Y  |  U  |  I  |  O  |    P      |
+ * |------+-----+-----+-----+-----|      |-----------------------------------|
+ * |    A |  S  |  D  |  F  |  G  |      |  H  |  J  |  K  |  L  | CTRL/;    |
+ * |------+-----+-----+-----+-----|      |-----------------------------------|
+ * |SHFT/Z|  X  |  C  |  V  |  B  |      |  N  |  M  |  ,  |  .  | SHFT/SLSH |
+ * `------+-----+-----+-----+-----'      `-----------------------------------'
  *       .------------------------.      .-----------------------.
  *       | LALT|DEL/LCTL|BSPC(SYM)|      | SPC(NUM)|ENT(PAD)|RCTL|
  *       '------------------------'      '-----------------------'
@@ -143,9 +139,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * ,-----------------------------.       ,-------------------------------.
  * |  1   ~  2  |  3  |  4  |  5  |      |  6  |  7  |  8  |  9  =   0   |
  * |------+-----+-----+-----+-----|      |-------------------------------|
- * |  `   |  0  |  (  |  [  |  {  |      |  }  |  ]  |  )  |  $ PIPE '   |
+ * |  !   |  @  |  #  |  $  |  %  |      |  ^  |  &  |  *  |  (  |   )   |
  * |------+-----+-----+-----+-----|      |-------------------------------|
- * | SHIFT|     |     |     |     |      |     |     |     |     | SHIFT |
+ * | SHIFT|  {  |  [  |  (  |     |      |     |  )  |  ]  |  }  | SHIFT |
  * `------+-----+-----+-----+-----'      `-------------------------------'
  *              .-----------------.      .-----------------.
  *              |     |    |  =   |      |     |     |     |
@@ -153,8 +149,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
 [NUMB] = LAYOUT_gergoplex(
     KC_1,    KC_2,    KC_3,    KC_4,    KC_5, 	   KC_6,  	KC_7, 	 KC_8,    KC_9,    KC_0,
-    KC_GRV,  KC_0,    KC_LPRN, KC_LBRC, KC_LCBR,   KC_RCBR, KC_RBRC, KC_RPRN, KC_DLR,  KC_QUOT,
-    KC_LSFT, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,   KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_RSFT,
+    KC_EXLM, KC_AT,   KC_HASH, KC_DLR,  KC_PERC,   KC_CIRC, KC_AMPR, KC_ASTR, KC_LPRN,  KC_RPRN,
+    KC_LSFT, KC_LCBR, KC_LBRC, KC_LPRN, KC_TRNS,   KC_TRNS, KC_RPRN, KC_RBRC, KC_RCBR,  KC_RSFT,
        		          KC_TRNS, KC_TRNS, KC_EQL,    KC_TRNS, KC_TRNS, KC_TRNS
     ),
 
