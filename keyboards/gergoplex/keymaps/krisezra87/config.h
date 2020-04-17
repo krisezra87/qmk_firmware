@@ -1,6 +1,6 @@
 #pragma once
 
-#define COMBO_COUNT 13
+#define COMBO_COUNT 14
 #define COMBO_ALLOW_ACTION_KEYS
 #define PERMISSIVE_HOLD
 #define IGNORE_MOD_TAP_INTERRUPT

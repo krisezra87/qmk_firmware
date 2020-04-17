@@ -17,7 +17,7 @@
 enum combos {
   QW,UI,OP,
   AS,JK,KL,LSCLN,
-  OT,NZ,SLP,LPRP,
+  OT,NZ,BA,SLP,LPRP,
   VV,LR
 };
 
@@ -35,6 +35,7 @@ const uint16_t PROGMEM lscln_combo[] = {KC_L, KC_SCLN, COMBO_END};
 
 const uint16_t PROGMEM ot_combo[] = {KC_1, KC_2, COMBO_END};
 const uint16_t PROGMEM nz_combo[] = {KC_9, KC_0, COMBO_END};
+const uint16_t PROGMEM ba_combo[] = {KC_EXLM, KC_AT, COMBO_END};
 const uint16_t PROGMEM slp_combo[] = {KC_ASTR, KC_LPRN, COMBO_END};
 const uint16_t PROGMEM lprp_combo[] = {KC_LPRN, KC_RPRN, COMBO_END};
 
@@ -59,7 +60,8 @@ combo_t key_combos[COMBO_COUNT] = {
   // CMOD
 
   // NUM
-  [OT] = COMBO(ot_combo, KC_TILD),
+  [OT] = COMBO(ot_combo, KC_GRV),
+  [BA] = COMBO(ba_combo, KC_TILD),
   [NZ] = COMBO(nz_combo, KC_EQL),
   [SLP] = COMBO(slp_combo, KC_MINS),
   [LPRP] = COMBO(lprp_combo, KC_EQL),
@@ -109,7 +111,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * ,-----------------------------.       ,----------------------------------.
  * | ALT1 | ALT2| ALT3| ALT4| ALT5|      | ALT6| ALT7 | ALT8 | ALT9| ALT0   |
  * |------+-----+-----+-----+-----|      |----------------------------------|
- * |  `   |     | CTLD|     |     |      | ALTH| ALTJ | ALTK | ALTL|    '   |
+ * |      |     | CTLD|     |     |      | ALTH| ALTJ | ALTK | ALTL|        |
  * |------+-----+-----+-----+-----|      |----------------------------------|
  * | SHIFT|     | CTLC| CTLV|     |      |     |      | ALT, |     | SHIFT  |
  * `------+-----+-----+-----+-----'      `----------------------------------'
@@ -120,16 +122,16 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 [CMOD] = LAYOUT_gergoplex(
     LALT(KC_1), LALT(KC_2), LALT(KC_3), LALT(KC_4), LALT(KC_5),  LALT(KC_6), LALT(KC_7), LALT(KC_8), LALT(KC_9), LALT(KC_0),
-    KC_GRV,     KC_TRNS,    LCTL(KC_D), KC_TRNS,    KC_TRNS,     LALT(KC_H), LALT(KC_J), LALT(KC_K),    LALT(KC_L), KC_QUOT,
+    KC_TRNS,     KC_TRNS,    LCTL(KC_D), KC_TRNS,    KC_TRNS,     LALT(KC_H), LALT(KC_J), LALT(KC_K),    LALT(KC_L), KC_TRNS,
     KC_LSFT,    KC_TRNS,    LCTL(KC_C), LCTL(KC_V), KC_TRNS,     KC_TRNS,    KC_TRNS,    LALT(KC_COMM), KC_TRNS,    KC_RSFT,
                             KC_TRNS,    KC_TRNS,    KC_TRNS,     LALT(LSFT(KC_ENT)), LALT(LSFT(KC_Q)), KC_TRNS
     ),
 
 /* Keymap 2: Num/Sym Layer
  * ,-----------------------------.       ,-------------------------------.
- * |  1   ~  2  |  3  |  4  |  5  |      |  6  |  7  |  8  |  9  =   0   |
+ * |  1   `  2  |  3  |  4  |  5  |      |  6  |  7  |  8  |  9  =   0   |
  * |------+-----+-----+-----+-----|      |-------------------------------|
- * |  !   |  @  |  #  |  $  |  %  |      |  ^  |  &  |  *  -  (  =   )   |
+ * |  !   ~  @  |  #  |  $  |  %  |      |  ^  |  &  |  *  -  (  =   )   |
  * |------+-----+-----+-----+-----|      |-------------------------------|
  * | SHIFT|  {  |  [  |  (  |     |      |CTL6 |  )  |  ]  |  }  | SHIFT |
  * `------+-----+-----+-----+-----'      `-------------------------------'
